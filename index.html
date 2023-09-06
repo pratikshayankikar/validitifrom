@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validateForm</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./Icons/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+    <div class="main">
+        <div class="box">
+            <form onsubmit="return validateForm();" name="myForm">
+                <br>
+                <h3>validateForm</h3>
+                <br><br><br>
+                <i class="fa fa-user-circle-o icon" aria-hidden="true"></i>
+                <input type="text" style="color:black;" name="userName" placeholder="User name">
+                <p id="error" style="color: red;"></p>
+                <i class="fa fa-unlock-alt icon" aria-hidden="true"></i>
+                <input type="password" id="pswd1" name="pass1" placeholder="Password">
+                <p id="pass" style="color: red;"></p>
+                <i class="fa fa-unlock-alt icon" aria-hidden="true"></i>
+                <input type="password" id="pswd2" name="pass2" placeholder="Confirm password">
+                <p id="Cpass"></p>
+                <br><br>
+                <button type="submit">Submit</button> <!-- Changed type to "submit" -->
+                <br><br>
+                <p>Terms & Conditions</p>
+            </form>
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["userName"].value;
+            let text = "";
+
+            if (x === "") {
+                text = "Name must be filled out";
+            }
+            document.getElementById("error").innerHTML = text;
+
+            // Return false to prevent the form from submitting if there are errors
+            return text === "";
+        }
+
+        function matchPassword() {
+            var pw1 = document.getElementById("pswd1").value;
+            var pw2 = document.getElementById("pswd2").value;
+            let text = "";
+
+            if (pw1 === "" || pw2 === "") {
+                text = "Password is empty";
+                document.getElementById("pass").innerHTML = text;
+            } else if (pw1 !== pw2) {
+                text = "Password did not match";
+                document.getElementById("pass").innerHTML = text;
+            } else {
+                text = "Password matched";
+                document.getElementById("pass").innerHTML = text;
+            }
+        }
+    </script>
+</body>
+</html>
